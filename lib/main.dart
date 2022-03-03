@@ -7,7 +7,7 @@ main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.light,
       primaryColor: Colors.blueGrey,
     ),
     home: PaymentActivity(),
