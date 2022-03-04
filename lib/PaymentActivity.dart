@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 class PaymentActivity extends StatelessWidget {
   const PaymentActivity({Key? key}) : super(key: key);
 
-  Widget verticalSpace(double value) => SizedBox(height: value);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,42 +51,7 @@ class PaymentActivity extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Container(
-                        height: 170,
-                        width: 170,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Colors.red,
-                              Colors.redAccent,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(30),
-                              bottomLeft: Radius.circular(30)),
-                        ),
-                        child: Column(
-                          children: [
-                            verticalSpace(40),
-                            Icon(
-                              Icons.search,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                            verticalSpace(20),
-                            Text(
-                              "LOAD MONEY",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      squareCard(0,30,30,0),
                       Container(
                         height: 170,
                         width: 170,
@@ -277,3 +240,51 @@ class PaymentActivity extends StatelessWidget {
     );
   }
 }
+
+Widget verticalSpace(double value) => SizedBox(height: value);
+
+Widget squareCard(
+    double topLeft, double topRight, double bottomLeft, double bottomRight,) {
+  return (Container(
+    height: 170,
+    width: 170,
+    decoration: BoxDecoration(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Colors.red,
+          Colors.redAccent,
+        ],
+      ),
+      borderRadius: BorderRadius.only(
+          topRight: Radius.circular(topRight),
+          bottomLeft: Radius.circular(bottomLeft),
+          bottomRight: Radius.circular(bottomRight),
+          topLeft: Radius.circular(topLeft)),
+    ),
+    child: Column(
+      children: [
+        verticalSpace(40),
+        Icon(
+          Icons.search,
+          size: 60,
+          color: Colors.white,
+        ),
+        verticalSpace(20),
+        Text(
+          "LOAD MONEY",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 14,
+          ),
+        ),
+      ],
+    ),
+  ));
+}
+
+
+//popupmenubutton
+//randomcolor
