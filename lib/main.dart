@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/Form.dart';
+import 'package:flutter_projects/form.dart';
+import 'package:flutter_projects/restaurant_menu_more.dart';
 import 'package:flutter_projects/rowColumn.dart';
 
 import 'PaymentActivity.dart';
@@ -11,7 +12,7 @@ main() {
       brightness: Brightness.light,
       primaryColor: Colors.blueGrey,
     ),
-    home: LoginDetails(),
+
   ));
 }
 

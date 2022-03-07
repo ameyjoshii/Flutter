@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/display_data.dart';
 
 class LoginDetails extends StatefulWidget {
   LoginDetails({Key? key}) : super(key: key);
@@ -8,39 +11,72 @@ class LoginDetails extends StatefulWidget {
 }
 
 class _LoginDetailsState extends State<LoginDetails> {
-  bool pass = false;
+  GlobalKey<FormState> key = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool cb1 = false;
   bool cb2 = false;
   bool cb3 = false;
   bool cb4 = false;
   bool cb5 = false;
   String gender = '';
-  String genderDisplay = '';
   String g1 = 'Male';
   String g2 = 'Female';
   String g3 = 'Other';
+  bool pass = true;
   String errorPass = '';
   String errorFname = '';
   String errorLname = '';
   String errorEmail = '';
   String errorContact = '';
-  String email = '';
-  String fname = '';
-  String lname = '';
-  String contact = '';
   Color color = Colors.blueAccent;
   TextEditingController emailController = TextEditingController();
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController contactController = TextEditingController();
 
-  Widget space(double value) => SizedBox(width: value);
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        drawer: Drawer(
+          backgroundColor: Colors.grey,
+          child: Column(
+             children: [
+               Row(
+                 children: [
+                   Text(
+                       "Settings",
+                     style: TextStyle(
+                       fontSize: 15,
+                       color: Colors.black,
+                     ),
+                   ),
+                 ],
+               ),
+             ],
+          ),
+        ),
+        appBar: AppBar(
+          title: Text(
+            "Login Form",
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: "Fredoka",
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+            ),
+          ),
+          leading: IconButton(
+              onPressed: (){
+                scaffoldKey.currentState!.openDrawer();
+                },
+              icon: Icon(Icons.menu_rounded),
+          ),
+        ),
+        body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Center(
             child: Padding(
@@ -167,73 +203,75 @@ class _LoginDetailsState extends State<LoginDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "Select Gender:",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Select Gender:",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Radio(
+                              value: g1,
+                              groupValue: gender,
+                              onChanged: (val) {
+                                setState(() {
+                                  gender = val.toString();
+                                });
+                              },
                             ),
-                          ),
-                          Radio(
-                            value: g1,
-                            groupValue: gender,
-                            onChanged: (val) {
-                              setState(() {
-                                gender = val.toString();
-                              });
-                            },
-                          ),
-                          Text(
-                            "Male",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                            Text(
+                              "Male",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                          space(10),
-                          Radio(
-                            value: g2,
-                            groupValue: gender,
-                            onChanged: (val) {
-                              setState(() {
-                                gender = val.toString();
-                              });
-                            },
-                          ),
-                          Text(
-                            "Female",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                            space(10),
+                            Radio(
+                              value: g2,
+                              groupValue: gender,
+                              onChanged: (val) {
+                                setState(() {
+                                  gender = val.toString();
+                                });
+                              },
                             ),
-                          ),
-                          Radio(
-                            value: g3,
-                            groupValue: gender,
-                            onChanged: (val) {
-                              setState(() {
-                                gender = val.toString();
-                              });
-                            },
-                          ),
-                          Text(
-                            "Other",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
+                            Text(
+                              "Female",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                            Radio(
+                              value: g3,
+                              groupValue: gender,
+                              onChanged: (val) {
+                                setState(() {
+                                  gender = val.toString();
+                                });
+                              },
+                            ),
+                            Text(
+                              "Other",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10, top: 10),
                     child: Row(
                       children: [
                         Column(
@@ -347,6 +385,28 @@ class _LoginDetailsState extends State<LoginDetails> {
                     ),
                   ),
                   Padding(
+                    padding: const EdgeInsets.only(left:10,top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Date Of Birth:",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                        ),
+                        // CalendarDatePicker(
+                        //     initialDate: DateTime.now(),
+                        //     firstDate: DateTime(1950),
+                        //     lastDate: DateTime(2004),
+                        //     onDateChanged: DateTime,
+                        // ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: MaterialButton(
                       color: color,
@@ -354,13 +414,13 @@ class _LoginDetailsState extends State<LoginDetails> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DisplayData(
+                              fname : fnameController.text,
+                            ),));
                         setState(() {
                           color = Colors.green;
-                          email = emailController.text;
-                          fname = fnameController.text;
-                          lname = lnameController.text;
-                          contact = contactController.text;
-                          genderDisplay = gender;
                         });
                       },
                       child: Text("SUBMIT"),
@@ -386,7 +446,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                                 ),
                                 space(10),
                                 Text(
-                                  fname,
+                                  fnameController.text,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -406,7 +466,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                                 ),
                                 space(10),
                                 Text(
-                                  lname,
+                                  lnameController.text,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -426,7 +486,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                                 ),
                                 space(10),
                                 Text(
-                                  email,
+                                  emailController.text,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -466,7 +526,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                                 ),
                                 space(10),
                                 Text(
-                                  genderDisplay,
+                                  gender,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16,
@@ -488,6 +548,6 @@ class _LoginDetailsState extends State<LoginDetails> {
     );
   }
 }
-
-
+Widget space(double value) => SizedBox(width: value);
 //drawer
+//datatable
