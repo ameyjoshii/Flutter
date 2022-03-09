@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/display_data.dart';
 import 'package:flutter_projects/form.dart';
-import 'package:flutter_projects/restaurant_menu_more.dart';
-import 'package:flutter_projects/rowColumn.dart';
+import 'package:flutter_projects/restaurant_menu.dart';
+import 'package:flutter_projects/user_profile.dart';
 
-import 'PaymentActivity.dart';
+import 'menu_item_details.dart';
 
 main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    initialRoute: 'first',
+    routes: {
+      'first': (context) => LoginDetails(),
+      'second': (context) => DisplayData(),
+      'third': (context) => RestaurantMenu(),
+      'fourth': (context) => MenuItemInfo(),
+      'fifth': (context) => UserProfile(),
+    },
     theme: ThemeData(
       brightness: Brightness.light,
       primaryColor: Colors.blueGrey,

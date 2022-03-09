@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "245384321684",
+    "project_id": "wishtreefirebasedemo",
+    "storage_bucket": "wishtreefirebasedemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245384321684:android:c8e1ae4f272f53d5e33281",
+        "android_client_info": {
+          "package_name": "com.Flutter1.firstproj.flutter_projects"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245384321684-m42rq8vogfbq8l1tnv917h5k7shls5rq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSMV5oBt2H_xBg9nb5KKKvLm-c9JXW9zU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245384321684-m42rq8vogfbq8l1tnv917h5k7shls5rq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
