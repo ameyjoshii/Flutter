@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/display_data.dart';
 import 'package:flutter_projects/form.dart';
@@ -7,6 +8,9 @@ import 'package:flutter_projects/user_profile.dart';
 import 'menu_item_details.dart';
 
 main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: 'first',

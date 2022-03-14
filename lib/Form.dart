@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/database.dart';
 import 'package:flutter_projects/restaurant_menu.dart';
 
 class LoginDetails extends StatefulWidget {
@@ -28,11 +29,11 @@ class _LoginDetailsState extends State<LoginDetails> {
   String errorLname = '';
   String errorEmail = '';
   String errorContact = '';
-  Color color = Colors.blueAccent;
   TextEditingController emailController = TextEditingController();
   TextEditingController fnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
   TextEditingController contactController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _LoginDetailsState extends State<LoginDetails> {
       child: Scaffold(
         key: scaffoldKey,
         drawer: Drawer(
-          backgroundColor: Colors.grey,
+          backgroundColor: chromeyellow,
           child: Column(
             children: [
               Row(
@@ -49,7 +50,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                     "Settings",
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -58,6 +59,7 @@ class _LoginDetailsState extends State<LoginDetails> {
           ),
         ),
         appBar: AppBar(
+          backgroundColor: chromeyellow,
           title: Text(
             "Login Form",
             style: TextStyle(
@@ -190,6 +192,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                       errorText: errorPass,
                     ),
                     obscureText: pass,
+                    controller: passwordController,
                     onChanged: (val) {
                       setState(() {
                         errorPass = val.isEmpty ? 'Enter Valid Password' : '';
@@ -399,7 +402,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                       Padding(
                         padding: const EdgeInsets.only(left: 50),
                         child: MaterialButton(
-                          color: Colors.blueAccent,
+                          color: chromeyellow,
                           elevation: 10.0,
                           height: 30,
                           child: Text('DatePicker'),
@@ -452,11 +455,14 @@ class _LoginDetailsState extends State<LoginDetails> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: MaterialButton(
-                    color: color,
+                    color: chromeyellow,
+                    elevation: 10,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     onPressed: () {
+                      MyDatabase.insertData(
+                       emailController.text, passwordController.text, fnameController.text, lnameController.text, contactController.text, showDate, gender);
                       Navigator.pushNamed(
                         context,
                         'second',
@@ -466,6 +472,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                           'lname': lnameController.text,
                           'phone': contactController.text,
                           'gender': gender,
+                          'pass': passwordController.text,
                           'showDate': showDate,
                         },
                       );

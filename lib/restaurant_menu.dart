@@ -3,8 +3,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'form.dart';
-
 class RestaurantMenu extends StatefulWidget {
   RestaurantMenu({Key? key}) : super(key: key);
 
@@ -203,6 +201,9 @@ Map data = {
   ],
 };
 
+GlobalKey<FormState> key = GlobalKey<FormState>();
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
 Color chromeyellow = Colors.yellow.shade700;
 
 class _RestaurantMenuState extends State<RestaurantMenu> {
@@ -210,8 +211,8 @@ class _RestaurantMenuState extends State<RestaurantMenu> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.amber.shade50,
         key: scaffoldKey,
+        backgroundColor: Colors.amber.shade50,
         drawer: Drawer(
           backgroundColor: chromeyellow,
           child: Column(

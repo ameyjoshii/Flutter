@@ -12,18 +12,28 @@ class _DisplayDataState extends State<DisplayData> {
     Map data = ModalRoute.of(context)?.settings.arguments as Map;
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: chromeyellow,
+          leading: BackButton(
+            color: Colors.white,
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          ),
+          title: Text(
+            "Confirm Details",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BackButton(
-                color: Colors.blue,
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-              ),
               Text(
                 "First Name: ${data['fname']}",
                 style: TextStyle(
@@ -77,13 +87,15 @@ class _DisplayDataState extends State<DisplayData> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              vspace(10),
-              MaterialButton(onPressed:(){
-                Navigator.pushNamed(context, 'third');
-              },
-                child: Text("Open Restaurant Menu"),
-                color: Colors.green,
+              vspace(30),
+              Center(
+                child: MaterialButton(onPressed:(){
+                  Navigator.pushNamed(context, 'third');
+                },
+                  child: Text("Agree and Continue"),
+                  color: Colors.green,
 
+                ),
               ),
             ],
           ),
